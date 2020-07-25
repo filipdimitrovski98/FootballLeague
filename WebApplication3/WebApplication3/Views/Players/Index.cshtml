@@ -1,0 +1,108 @@
+﻿@model WebApplication3.ViewModels.PlayersSearchViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Players</h1>
+<form asp-controller="Players" asp-action="Index" method="get">
+    <p>
+        <select asp-for="PlayerPosition" asp-items="Model.Positions">
+            <option value="">Поцизиција</option>
+        </select>
+        <select asp-for="PlayerCountry" asp-items="Model.Countries">
+            <option value="">Држава</option>
+        </select>
+        
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].JerseyNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].PrefferedLeg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].Goals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players[0].BirthDate)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Players) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JerseyNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrefferedLeg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Goals)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @if (item.ContractId != null)
+                {   
+                    <a asp-controller="Contracts" asp-action="Details" asp-route-Id="@item.ContractId"> Договор на играчот </a>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

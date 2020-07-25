@@ -1,0 +1,37 @@
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebApplication3.Models
+{
+    public class Image
+    {
+        [Key]
+        public int Id { get; set; }
+
+        
+
+        [Column(TypeName = "nvarchar(50)")]
+        public string Title { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        [DisplayName("Image Name")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
+
+        public int? PlayerId { get; set; }
+        [ForeignKey("PlayerId")]
+
+        public Player Player { get; set; }
+       
+    }
+
+}

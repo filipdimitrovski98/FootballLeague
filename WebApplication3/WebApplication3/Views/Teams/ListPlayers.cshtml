@@ -1,0 +1,48 @@
+﻿@model WebApplication3.Models.Team
+
+@{
+    ViewData["Title"] = "ListPlayers";
+}
+
+<h1>Team Squad</h1>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StadiumName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StadiumName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Players)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var player in Model.Players)
+            {
+                
+            <p>
+                <a asp-controller="Players" asp-action="Details" asp-route-id="@player.PlayerId">
+                    @player.Player.FullName
+                </a>
+                Позиција: @player.Player.Position
+            </p>
+                
+                <br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<div>
+    
+    <a asp-action="Index">Back to List</a>
+</div>
